@@ -1,6 +1,5 @@
 from collections import Counter
 import csv
-import re
 
 
 def get_orders_by_customer(orders, customer_name):
@@ -37,7 +36,6 @@ def days_customer_never_went(orders, customer_name):
     client_days = {order[2] for order in customer_orders}
 
     return restaurant_days_opened.difference(client_days)
-
 
 
 def csv_reader(path_to_file):
