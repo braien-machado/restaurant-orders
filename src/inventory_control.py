@@ -30,14 +30,22 @@ class InventoryControl:
         for ingredient in self.storage:
             if self.MINIMUM_INVENTORY[ingredient] > self.storage[ingredient]:
                 quantities_to_buy.update(
-                    {ingredient: self.MINIMUM_INVENTORY[ingredient] - self.storage[ingredient]}
+                    {
+                        ingredient: self
+                        .MINIMUM_INVENTORY[ingredient] - self
+                        .storage[ingredient]
+                    }
                 )
             else:
                 quantities_to_buy.update({ingredient: 0})
         return quantities_to_buy
 
     def get_available_dishes(self):
-        available_ingredients = {ingredient for ingredient in self.storage if self.storage[ingredient] > 0}
+        available_ingredients = {
+            ingredient
+            for ingredient in self.storage
+            if self.storage[ingredient] > 0
+        }
         available_dishes = set()
         for dish in self.INGREDIENTS:
             ingredients = {ingredient for ingredient in self.INGREDIENTS[dish]}
