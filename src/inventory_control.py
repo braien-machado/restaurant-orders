@@ -46,10 +46,10 @@ class InventoryControl:
             for ingredient in self.storage
             if self.storage[ingredient] > 0
         }
-        available_dishes = set()
-        for dish in self.INGREDIENTS:
-            ingredients = {ingredient for ingredient in self.INGREDIENTS[dish]}
-            if ingredients.issubset(available_ingredients):
-                available_dishes.add(dish)
 
-        return available_dishes
+        return {
+            dish
+            for dish in self.INGREDIENTS
+            if {ingredient for ingredient in self.INGREDIENTS[dish]}
+            .issubset(available_ingredients)
+        }
